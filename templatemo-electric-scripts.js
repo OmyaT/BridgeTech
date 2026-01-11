@@ -100,18 +100,26 @@ https://templatemo.com/tm-596-electric-xtra
         const panels = document.querySelectorAll('.content-panel');
 
         tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabId = tab.getAttribute('data-tab');
-                
-                // Remove active class from all tabs and panels
-                tabs.forEach(t => t.classList.remove('active'));
-                panels.forEach(p => p.classList.remove('active'));
-                
-                // Add active class to clicked tab and corresponding panel
-                tab.classList.add('active');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
+    tab.addEventListener('click', (e) => {
+        // If it's locked, stop everything
+        if (tab.classList.contains("locked")) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            alert("This section is locked until you complete the previous level!");
+            return;
+        }
+
+        const tabId = tab.getAttribute('data-tab');
+
+        // Remove active class from all tabs and panels
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+
+        // Add active class to clicked tab and corresponding panel
+        tab.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    });
+});
 
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -274,3 +282,4 @@ document.querySelectorAll(".complete-level").forEach(btn =>
 
 // Initialize lock states
 updateLocks();
+
