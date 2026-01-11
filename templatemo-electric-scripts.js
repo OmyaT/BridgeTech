@@ -208,4 +208,69 @@ https://templatemo.com/tm-596-electric-xtra
                     }, 200);
                 }
             });
+
         }, 3000);
+
+/* ---------------------------------------
+   LEVEL LOCKING / PROGRESS SYSTEM
+---------------------------------------- */
+
+// Track saved progress
+let progress = JSON.parse(localStorage.getItem("progress")) || 
+{
+    level1: false,
+    level2: false,
+    level3: false
+};
+
+// Update which tabs are locked or unlocked
+function updateLocks() {
+    const level1 = document.querySelector('[data-tab="network"]');     // Level 2
+    const level2 = document.querySelector('[data-tab="analytics"]');   // Level 3
+    const level3 = document.querySelector('[data-tab="integration"]'); // Completion
+
+    // Level 2 locked until Level 1 complete
+    if (!progress.level1) level1.classList.add("locked");
+    else level1.classList.remove("locked");
+
+    // Level 3 locked until Level 2 complete
+    if (!progress.level2) level2.classList.add("locked");
+    else level2.classList.remove("locked");
+
+    // Completion locked until Level 3 complete
+    if (!progress.level3) level3.classList.add("locked");
+    else level3.classList.remove("locked");
+}
+
+// Prevent clicking locked tabs
+document.querySelectorAll(".tab-item").forEach(tab => 
+        {
+    tab.addEventListener("click", e => 
+            {
+        if (tab.classList.contains("locked")) 
+        {
+            e.preventDefault();
+            alert("This section is locked until you complete the previous level!");
+        }
+    });
+});
+
+// TEMP button to mark levels as complete (replace with quiz later)
+document.querySelectorAll(".complete-level").forEach(btn => 
+        {
+    btn.addEventListener("click", () => 
+            {
+        const level = btn.dataset.level;
+
+        if (level === "1") progress.level1 = true;
+        if (level === "2") progress.level2 = true;
+        if (level === "3") progress.level3 = true;
+
+        localStorage.setItem("progress", JSON.stringify(progress));
+        updateLocks();
+        alert("Next level unlocked!");
+    });
+});
+
+// Initialize lock states
+updateLocks();
