@@ -109,7 +109,7 @@
                 <!-- Introduction Panel -->
                 <div class="content-panel active" id="performance">
                     <h3>Introduction</h3>
-                    <p>Welcome to BridgeTech! This course will guide you through understanding seniors’ digital challenges and teach you how to take action to protect and empower them online.</p>
+                    <p>Welcome to BridgeTech! This course will guide you through understanding seniors' digital challenges and teach you how to take action to protect and empower them online.</p>
                     <ul class="feature-list">
                         <li>Learn about seniors and digital risks</li>
                         <li>Complete interactive lessons</li>
@@ -127,7 +127,7 @@
                             <p>1. Why are seniors more vulnerable to digital risks?</p>
                             <label><input type="radio" name="l1q1" value="a"> They use technology less often</label><br>
                             <label><input type="radio" name="l1q1" value="b"> They are targeted more frequently</label><br>
-                            <label><input type="radio" name="l1q1" value="c"> Both A and B</label>
+                            <label><input type="radio" name="l1q1" value="correct"> Both A and B</label>
                         </div>
                         <div class="quiz-question">
                             <p>2. What is a common challenge seniors face?</p>
@@ -207,7 +207,7 @@
                             <p>1. What is the purpose of app permissions?</p>
                             <label><input type="radio" name="l3q1" value="wrong"> Make apps run faster</label><br>
                             <label><input type="radio" name="l3q1" value="correct"> Control what data apps can access</label><br>
-                            <label><input type="radio" name="l3q1" value="wrong"> Change the phone’s appearance</label>
+                            <label><input type="radio" name="l3q1" value="wrong"> Change the phone's appearance</label>
                         </div>
                         <div class="quiz-question">
                             <p>2. What is a safe practice when texting?</p>
@@ -241,7 +241,7 @@
                 <!-- Completion Panel -->
                 <div class="content-panel" id="integration">
                     <h3>Course Complete!</h3>
-                    <p>Congratulations! You’ve completed all levels of the BridgeTech course. Download your certificate and start putting your knowledge into action by connecting with local senior centers!</p>
+                    <p>Congratulations! You've completed all levels of the BridgeTech course. Download your certificate and start putting your knowledge into action by connecting with local senior centers!</p>
                 </div>
 
             </div>
@@ -256,7 +256,7 @@
                 <h2>Empowering Students. Protecting Seniors. Bridging the Digital Divide.</h2>
                 <p>BridgeTech is on a mission to transform how students engage with the digital world, not just for themselves, but for the most vulnerable in our communities. </p>
                 <p>BridgeTech's platform trains young people to understand the unique challenges seniors face online, from everyday technology navigation to safeguarding against scams and cyber threats. Through interactive lessons, progress tracking, and certification, BridgeTech equips students with the knowledge, empathy, and confidence to take real-world action. </p>
-                <p>By connecting digital literacy with community service, we don’t just teach skills — we create guardians of the digital age, ensuring a safer, smarter, and more connected future for everyone.</p>
+                <p>By connecting digital literacy with community service, we don't just teach skills — we create guardians of the digital age, ensuring a safer, smarter, and more connected future for everyone.</p>
             </div>
             <div class="about-visual">
                 <div class="about-graphic"></div>
@@ -272,7 +272,7 @@
             </div>
             <div class="about-text">
                 <h2>Learn. Act. Make an Impact.</h2>
-                <p>BridgeTech isn’t just a learning platform — it’s a call to action. Our carefully designed courses guide students through the essentials of digital literacy and cybersecurity, with a special focus on understanding the needs of seniors. From recognizing online scams to mastering everyday tech skills, each interactive lesson builds knowledge step by step. But learning is just the beginning. Students earn certificates as they complete lessons and are encouraged to put their skills into action by connecting with local senior centers, leading workshops, and sharing their expertise with the community.</p>
+                <p>BridgeTech isn't just a learning platform — it's a call to action. Our carefully designed courses guide students through the essentials of digital literacy and cybersecurity, with a special focus on understanding the needs of seniors. From recognizing online scams to mastering everyday tech skills, each interactive lesson builds knowledge step by step. But learning is just the beginning. Students earn certificates as they complete lessons and are encouraged to put their skills into action by connecting with local senior centers, leading workshops, and sharing their expertise with the community.</p>
                 <p>By combining education with real-world service, BridgeTech turns knowledge into meaningful impact — empowering students to protect, teach, and inspire a safer digital future for everyone.</p>
             </div>
         </div>
@@ -351,6 +351,27 @@
 <script src="templatemo-electric-scripts.js"></script>
     <script>
 // ======================
+// Tab Navigation System (THIS IS THE FIX!)
+// ======================
+document.querySelectorAll('.tab-item').forEach(tab => {
+    tab.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-tab');
+        
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        this.classList.add('active');
+        
+        // Hide all content panels
+        document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
+        
+        // Show target content panel
+        document.getElementById(targetId).classList.add('active');
+    });
+});
+
+// ======================
 // Quiz Submission Logic
 // ======================
 function submitQuiz(level) {
@@ -406,20 +427,4 @@ document.querySelectorAll('button.submit-quiz').forEach(btn => {
 });
 </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
