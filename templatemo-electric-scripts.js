@@ -286,22 +286,21 @@ updateLocks();
 // ======================
 // Quiz Submission Logic
 // ======================
-function submitQuiz(level) 
-{
+function submitQuiz(level) {
     const quizId = `quiz-level-${level}`;
     const quiz = document.getElementById(quizId);
     const feedbackId = `quiz-feedback-${level}`;
     const feedback = document.getElementById(feedbackId);
 
+    if (!quiz || !feedback) return;
+
     // Get all questions in this quiz
     const questions = quiz.querySelectorAll('.quiz-question');
     let correctCount = 0;
 
-    questions.forEach((q) => 
-            {
+    questions.forEach((q) => {
         const selected = q.querySelector('input[type="radio"]:checked');
-        if (selected && selected.value === "correct") 
-        {
+        if (selected && selected.value === "correct") {
             correctCount++;
         }
     });
@@ -309,8 +308,7 @@ function submitQuiz(level)
     const totalQuestions = questions.length;
     const score = (correctCount / totalQuestions) * 100;
 
-    if (score >= 80) 
-    {
+    if (score >= 80) {
         feedback.innerHTML = `✅ You passed! Score: ${score.toFixed(0)}%`;
         feedback.style.color = 'limegreen';
 
@@ -325,13 +323,5 @@ function submitQuiz(level)
     } 
     else 
     {
-        feedback.innerHTML = `❌ You did not pass. Score: ${score.toFixed(0)}%. Try again!`;
-        feedback.style.color = 'red';
+        feedback.innerHTM
     }
-
-    // Optional > scroll to feedback
-    feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-
-
