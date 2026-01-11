@@ -283,3 +283,55 @@ document.querySelectorAll(".complete-level").forEach(btn =>
 // Initialize lock states
 updateLocks();
 
+// ======================
+// Quiz Submission Logic
+// ======================
+function submitQuiz(level) 
+{
+    const quizId = `quiz-level-${level}`;
+    const quiz = document.getElementById(quizId);
+    const feedbackId = `quiz-feedback-${level}`;
+    const feedback = document.getElementById(feedbackId);
+
+    // Get all questions in this quiz
+    const questions = quiz.querySelectorAll('.quiz-question');
+    let correctCount = 0;
+
+    questions.forEach((q) => 
+            {
+        const selected = q.querySelector('input[type="radio"]:checked');
+        if (selected && selected.value === "correct") 
+        {
+            correctCount++;
+        }
+    });
+
+    const totalQuestions = questions.length;
+    const score = (correctCount / totalQuestions) * 100;
+
+    if (score >= 80) 
+    {
+        feedback.innerHTML = `✅ You passed! Score: ${score.toFixed(0)}%`;
+        feedback.style.color = 'limegreen';
+
+        // Unlock next level (if exists)
+        const nextLevel = level + 1;
+        const nextQuiz = document.getElementById(`quiz-level-${nextLevel}`);
+        if (nextQuiz) 
+        {
+            nextQuiz.classList.remove('locked');
+        }
+
+    } 
+    else 
+    {
+        feedback.innerHTML = `❌ You did not pass. Score: ${score.toFixed(0)}%. Try again!`;
+        feedback.style.color = 'red';
+    }
+
+    // Optional > scroll to feedback
+    feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+
+
