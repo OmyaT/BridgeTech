@@ -1150,4 +1150,164 @@ https://templatemo.com/tm-596-electric-xtra
                 pointer-events: none;
             }
 
+                    /* ==============================================
+   LOCK STYLING FOR TABS AND QUIZ CONTAINERS
+============================================== */
+
+/* Locked tab styling */
+.tab-item.locked {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+    position: relative;
+}
+
+.tab-item.locked:hover {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-color: rgba(255, 94, 0, 0.1) !important;
+    transform: none !important;
+}
+
+/* Add lock icon to locked tabs */
+.tab-item.locked::after {
+    content: '🔒';
+    position: absolute;
+    right: 15px;
+    font-size: 1rem;
+    opacity: 0.6;
+}
+
+/* Locked quiz container styling */
+.quiz-container.locked {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+    filter: blur(2px);
+}
+
+.quiz-container.locked::before {
+    content: '🔒 Complete the previous level to unlock this quiz';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3rem;
+    color: #FF5E00;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 2px solid #FF5E00;
+    z-index: 10;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    font-weight: 700;
+    box-shadow: 0 0 30px rgba(255, 94, 0, 0.5);
+    filter: none;
+    backdrop-filter: blur(10px);
+}
+
+/* Quiz feedback styling */
+.quiz-feedback {
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid transparent;
+}
+
+/* Quiz container base styling */
+.quiz-container {
+    margin-top: 30px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.quiz-container h4 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #00B2FF;
+}
+
+.quiz-question {
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quiz-question p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.quiz-question label {
+    display: block;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 4px;
+    margin: 5px 0;
+}
+
+.quiz-question label:hover {
+    background: rgba(255, 94, 0, 0.1);
+    color: #00B2FF;
+}
+
+.quiz-question input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Submit button styling */
+.quiz-container button {
+    background: linear-gradient(45deg, #FF5E00, #00B2FF);
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.quiz-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 94, 0, 0.5);
+}
+
+.quiz-container button:active {
+    transform: translateY(0);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .quiz-container.locked::before {
+        font-size: 1rem;
+        padding: 15px 20px;
+        width: 90%;
+    }
+    
+    .tab-item.locked::after {
+        right: 10px;
+        font-size: 0.9rem;
+    }
+}
+
         }
+
