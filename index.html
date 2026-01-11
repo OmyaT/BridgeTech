@@ -353,15 +353,19 @@
 // ======================
 // Tab Navigation System (THIS IS THE FIX!)
 // ======================
+// Tab Navigation System with Locked Tabs
 document.querySelectorAll('.tab-item').forEach(tab => {
     tab.addEventListener('click', function() {
+        // If tab is locked, ignore click
+        if (tab.classList.contains('locked')) return;
+
         const targetId = this.getAttribute('data-tab');
         
         // Remove active class from all tabs
         document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
         
         // Add active class to clicked tab
-        this.classList.add('active');
+        tab.classList.add('active');
         
         // Hide all content panels
         document.querySelectorAll('.content-panel').forEach(panel => panel.classList.remove('active'));
@@ -428,3 +432,4 @@ document.querySelectorAll('button.submit-quiz').forEach(btn => {
 </script>
 </body>
 </html>
+
