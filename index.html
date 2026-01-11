@@ -123,16 +123,51 @@ https://templatemo.com/tm-596-electric-xtra
                     </ul>
                 </div>
                 <div class="content-panel" id="security">
-                    <h3>Level 1: Understanding Seniors & Digital Risk</h3>
-                    <p>lalala2</p>
-                    <ul class="feature-list">
-                        <li>lalala2</li>
-                        <li>lalala2</li>
-                        <li>Zlalala2</li>
-                        <li>lalala2</li>
-                        <li>lalala2</li>
-                    </ul>
+    <h3>Level 1: Understanding Seniors & Digital Risk</h3>
+
+    <!-- QUIZ replaces all lesson content -->
+            <div class="quiz" id="quiz-level-1">
+                <h4>Quiz: Level 1</h4>
+        
+                <div class="quiz-question">
+                    <p>1. Why are seniors more vulnerable to digital risks?</p>
+                    <label><input type="radio" name="q1" value="a"> They use technology less often</label><br>
+                    <label><input type="radio" name="q1" value="b"> They are targeted more frequently</label><br>
+                    <label><input type="radio" name="q1" value="c"> Both A and B</label>
                 </div>
+
+                <div class="quiz-question">
+                    <p>2. What is a common challenge seniors face?</p>
+                    <label><input type="radio" name="l1q2" value="correct"> Navigating unfamiliar device interfaces</label>
+                    <label><input type="radio" name="l1q2" value="wrong"> Coding complex programs</label>
+                    <label><input type="radio" name="l1q2" value="wrong"> Managing large social media accounts</label>
+                </div>
+
+                <div class="quiz-question">
+                    <p>3. What helps students work better with seniors?</p>
+                    <label><input type="radio" name="l1q3" value="wrong"> Speaking faster to save time</label>
+                    <label><input type="radio" name="l1q3" value="correct"> Using patience and clear communication</label>
+                    <label><input type="radio" name="l1q3" value="wrong"> Avoiding demonstrations</label>
+                </div>
+
+                <div class="quiz-question">
+                    <p>4. What is one reason seniors are targeted by scammers?</p>
+                    <label><input type="radio" name="l1q4" value="wrong"> They rarely use the internet</label>
+                    <label><input type="radio" name="l1q4" value="correct"> Scammers assume seniors are less tech-savvy</label>
+                    <label><input type="radio" name="l1q4" value="wrong"> All seniors have expensive devices</label>
+                </div>
+
+                <div class="quiz-question">
+                    <p>5. What helps build trust with seniors?</p>
+                    <label><input type="radio" name="l1q5" value="wrong"> Using complicated tech terms</label>
+                    <label><input type="radio" name="l1q5" value="wrong"> Rushing through instructions</label>
+                    <label><input type="radio" name="l1q5" value="correct"> Giving step-by-step guidance</label>
+                </div>
+        
+                <button onclick="submitQuiz(1)">Submit Quiz</button>
+                <p class="quiz-feedback" id="quiz-feedback-1"></p>
+            </div>
+        </div>                  
                 <div class="content-panel" id="network">
                     <h3>Level 2: Online Safety & Scam Prevention</h3>
                     <p>lalala3</p>
@@ -276,6 +311,7 @@ https://templatemo.com/tm-596-electric-xtra
 </body>
 
 </html>
+
 
 
 
