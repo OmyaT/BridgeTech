@@ -1129,4 +1129,12 @@ https://templatemo.com/tm-596-electric-xtra
             .shape-square {
                 transform: scale(0.6);
             }
+
+            .tab-item.locked 
+            {
+                opacity: 0.45;
+                cursor: not-allowed;
+                filter: grayscale(100%);
+            }
+
         }
