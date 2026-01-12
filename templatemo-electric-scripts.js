@@ -189,73 +189,42 @@ document.querySelectorAll('.tab-item').forEach(tab =>
 // ======================
 // Quiz Logic
 // ======================
-function submitQuiz(level) {
+function submitQuiz(level) 
+{
     const quiz = document.getElementById(`quiz-level-${level}`);
     const feedback = document.getElementById(`quiz-feedback-${level}`);
-    const nextBtn = document.getElementById(`next-btn-${level}`);
     if (!quiz || !feedback) return;
-    
     const questions = quiz.querySelectorAll('.quiz-question');
     let correctCount = 0;
-    questions.forEach(q => {
+    questions.forEach(q => 
+        {
         const selected = q.querySelector('input[type="radio"]:checked');
         if (selected && selected.value === "correct") correctCount++;
     });
     const totalQuestions = questions.length;
     const score = (correctCount / totalQuestions) * 100;
-    
-    if (score >= 80) {
+    if (score >= 80) 
+    {
         feedback.textContent = `✅ You passed! Score: ${score.toFixed(0)}%`;
         feedback.style.color = 'limegreen';
-
-        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        // FIXED PROGRESS SAVING
-        if (level === 1) progress.level1 = true;
-        if (level === 2) progress.level2 = true;
-        if (level === 3) progress.level3 = true;
-
+        // Unlock next level
+        const nextLevel = level + 1;
+        progress[`level${level}`] = true;
         localStorage.setItem("bridgetech_progress", JSON.stringify(progress));
         updateLocks();
-        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-        if (nextBtn) nextBtn.style.display = 'inline-block';
-    } else {
+    } else 
+    {
         feedback.textContent = `❌ You did not pass. Score: ${score.toFixed(0)}%. Try again!`;
         feedback.style.color = 'red';
-        if (nextBtn) nextBtn.style.display = 'none';
     }
-
     feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function goToNextLevel(level) 
-{
-    let targetTab;
-    if (level === 2) {
-        targetTab = document.querySelector('[data-tab="network"]');
-    } else if (level === 3) {
-        targetTab = document.querySelector('[data-tab="analytics"]');
-    } else if (level === 4) {
-        targetTab = document.querySelector('[data-tab="integration"]');
-    }
-    
-    if (targetTab) {
-        // Switch tabs
-        document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
-        targetTab.classList.add('active');
-        const targetId = targetTab.getAttribute('data-tab');
-        document.getElementById(targetId).classList.add('active');
-        
-        // Scroll to top of new content
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-}
-
 // Attach submit buttons dynamically
-<button onclick="submitQuiz(1)">Submit Quiz</button>
-<p class="quiz-feedback" id="quiz-feedback-1"></p>
-<button class="next-level-btn" id="next-btn-1" style="display:none;" onclick="goToNextLevel(2)">Next Level →</button>
+document.querySelectorAll('button.submit-quiz').forEach(btn => {
+    const level = parseInt(btn.getAttribute('data-level'));
+    btn.addEventListener('click', () => submitQuiz(level));
+});
 
 // ======================
 // Contact Form
@@ -265,6 +234,3 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     alert('Message sent! We\'ll get back to you soon.');
     this.reset();
 });
-
-
-
