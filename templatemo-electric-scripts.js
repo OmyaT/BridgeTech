@@ -189,9 +189,6 @@ document.querySelectorAll('.tab-item').forEach(tab =>
 // ======================
 // Quiz Logic
 // ======================
-// ======================
-// Quiz Logic
-// ======================
 function submitQuiz(level) {
     const quiz = document.getElementById(`quiz-level-${level}`);
     const feedback = document.getElementById(`quiz-feedback-${level}`);
@@ -210,22 +207,29 @@ function submitQuiz(level) {
     if (score >= 80) {
         feedback.textContent = `✅ You passed! Score: ${score.toFixed(0)}%`;
         feedback.style.color = 'limegreen';
-        // Show next level button
-        if (nextBtn) {
-            nextBtn.style.display = 'inline-block';
-        }
+
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // FIXED PROGRESS SAVING
+        if (level === 1) progress.level1 = true;
+        if (level === 2) progress.level2 = true;
+        if (level === 3) progress.level3 = true;
+
+        localStorage.setItem("bridgetech_progress", JSON.stringify(progress));
+        updateLocks();
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+        if (nextBtn) nextBtn.style.display = 'inline-block';
     } else {
         feedback.textContent = `❌ You did not pass. Score: ${score.toFixed(0)}%. Try again!`;
         feedback.style.color = 'red';
-        // Hide next level button
-        if (nextBtn) {
-            nextBtn.style.display = 'none';
-        }
+        if (nextBtn) nextBtn.style.display = 'none';
     }
+
     feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function goToNextLevel(level) {
+function goToNextLevel(level) 
+{
     let targetTab;
     if (level === 2) {
         targetTab = document.querySelector('[data-tab="network"]');
@@ -249,10 +253,9 @@ function goToNextLevel(level) {
 }
 
 // Attach submit buttons dynamically
-document.querySelectorAll('button.submit-quiz').forEach(btn => {
-    const level = parseInt(btn.getAttribute('data-level'));
-    btn.addEventListener('click', () => submitQuiz(level));
-});
+<button onclick="submitQuiz(1)">Submit Quiz</button>
+<p class="quiz-feedback" id="quiz-feedback-1"></p>
+<button class="next-level-btn" id="next-btn-1" style="display:none;" onclick="goToNextLevel(2)">Next Level →</button>
 
 // ======================
 // Contact Form
@@ -262,5 +265,6 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     alert('Message sent! We\'ll get back to you soon.');
     this.reset();
 });
+
 
 
