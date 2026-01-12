@@ -1303,11 +1303,31 @@ https://templatemo.com/tm-596-electric-xtra
         width: 90%;
     }
     
-    .tab-item.locked::after {
+    .tab-item.locked::after 
+            {
         right: 10px;
         font-size: 0.9rem;
     }
 }
 
         }
+
+.next-level-btn 
+{
+    background: limegreen;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.next-level-btn:hover 
+{
+    background: #32cd32;
+}
+
 
