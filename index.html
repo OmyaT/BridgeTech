@@ -155,7 +155,7 @@
                         </div>
                         <button onclick="submitQuiz(1)">Submit Quiz</button>
                         <p class="quiz-feedback" id="quiz-feedback-1"></p>
-                    </div>
+                        <button class="next-level-btn" id="next-btn-1" style="display:none;" onclick="goToNextLevel(2)">Next Level →</button>
                 </div>
 
                 <!-- Level 2 -->
@@ -195,6 +195,7 @@
                         </div>
                         <button onclick="submitQuiz(2)">Submit Quiz</button>
                         <p class="quiz-feedback" id="quiz-feedback-2"></p>
+                        <button class="next-level-btn" id="next-btn-2" style="display:none;" onclick="goToNextLevel(3)">Next Level →</button>
                     </div>
                 </div>
 
@@ -235,6 +236,7 @@
                         </div>
                         <button onclick="submitQuiz(3)">Submit Quiz</button>
                         <p class="quiz-feedback" id="quiz-feedback-3"></p>
+                        <button class="next-level-btn" id="next-btn-3" style="display:none;" onclick="goToNextLevel(4)">Get Certificate →</button>
                     </div>
                 </div>
 
@@ -478,6 +480,7 @@ document.querySelectorAll('button.submit-quiz').forEach(btn => {
 </script>
 </body>
 </html>
+
 
 
 
