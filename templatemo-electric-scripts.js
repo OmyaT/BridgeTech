@@ -1,7 +1,8 @@
 // ======================
 // Floating Particles
 // ======================
-function createParticles() {
+function createParticles() 
+{
     const particlesContainer = document.getElementById('particles');
     const particleCount = 30;
 
@@ -139,21 +140,37 @@ let progress = JSON.parse(localStorage.getItem("bridgetech_progress")) || {
     level3: false
 };
 
-function updateLocks() {
+function updateLocks() 
+{
+    const savedProgress = localStorage.getItem("bridgetech_progress");
+    if (savedProgress) 
+    {
+        progress = JSON.parse(savedProgress);
+    }
+    
     const level2Tab = document.querySelector('[data-tab="network"]');
     const level3Tab = document.querySelector('[data-tab="analytics"]');
     const completionTab = document.querySelector('[data-tab="integration"]');
-
+    
     progress.level1 ? level2Tab.classList.remove("locked") : level2Tab.classList.add("locked");
     progress.level2 ? level3Tab.classList.remove("locked") : level3Tab.classList.add("locked");
     progress.level3 ? completionTab.classList.remove("locked") : completionTab.classList.add("locked");
 }
 updateLocks();
 
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', () => 
+    {
+    updateLocks();
+});
+
 // Tab click logic
-document.querySelectorAll('.tab-item').forEach(tab => {
-    tab.addEventListener('click', e => {
-        if (tab.classList.contains("locked")) {
+document.querySelectorAll('.tab-item').forEach(tab => 
+    {
+    tab.addEventListener('click', e => 
+        {
+        if (tab.classList.contains("locked")) 
+        {
             e.preventDefault();
             e.stopPropagation();
             alert("🔒 This level is locked! Complete the previous level with 80%+ to unlock.");
@@ -172,36 +189,34 @@ document.querySelectorAll('.tab-item').forEach(tab => {
 // ======================
 // Quiz Logic
 // ======================
-function submitQuiz(level) {
+function submitQuiz(level) 
+{
     const quiz = document.getElementById(`quiz-level-${level}`);
     const feedback = document.getElementById(`quiz-feedback-${level}`);
     if (!quiz || !feedback) return;
-
     const questions = quiz.querySelectorAll('.quiz-question');
     let correctCount = 0;
-
-    questions.forEach(q => {
+    questions.forEach(q => 
+        {
         const selected = q.querySelector('input[type="radio"]:checked');
         if (selected && selected.value === "correct") correctCount++;
     });
-
     const totalQuestions = questions.length;
     const score = (correctCount / totalQuestions) * 100;
-
-    if (score >= 80) {
+    if (score >= 80) 
+    {
         feedback.textContent = `✅ You passed! Score: ${score.toFixed(0)}%`;
         feedback.style.color = 'limegreen';
-
         // Unlock next level
         const nextLevel = level + 1;
         progress[`level${level}`] = true;
         localStorage.setItem("bridgetech_progress", JSON.stringify(progress));
         updateLocks();
-    } else {
+    } else 
+    {
         feedback.textContent = `❌ You did not pass. Score: ${score.toFixed(0)}%. Try again!`;
         feedback.style.color = 'red';
     }
-
     feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
