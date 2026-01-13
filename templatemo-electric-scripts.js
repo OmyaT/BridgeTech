@@ -192,6 +192,7 @@ document.querySelectorAll('.tab-item').forEach(tab =>
 function submitQuiz(level) {
     const quiz = document.getElementById(`quiz-level-${level}`);
     const feedback = document.getElementById(`quiz-feedback-${level}`);
+    const nextBtn = document.getElementById(`next-btn-${level}`);
     if (!quiz || !feedback) return;
 
     const questions = quiz.querySelectorAll('.quiz-question');
@@ -209,22 +210,43 @@ function submitQuiz(level) {
         feedback.textContent = `✅ You passed! Score: ${score.toFixed(0)}%`;
         feedback.style.color = 'limegreen';
 
-        // Update progress and unlock next tab
+        // Unlock next level
+        const nextLevel = level + 1;
         progress[`level${level}`] = true;
         localStorage.setItem("bridgetech_progress", JSON.stringify(progress));
         updateLocks();
 
-        // Show the next button if it exists
-        const nextBtn = document.getElementById(`next-btn-${level}`);
+        // Show the Next button
         if (nextBtn) nextBtn.style.display = 'inline-block';
 
     } else {
         feedback.textContent = `❌ You did not pass. Score: ${score.toFixed(0)}%. Try again!`;
         feedback.style.color = 'red';
+        if (nextBtn) nextBtn.style.display = 'none';
     }
 
     feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
+
+// Function to actually move to the next tab
+function goToNextLevel(nextLevel) {
+    const nextTab = document.querySelector(`.tab-item[data-tab="${nextLevel === 2 ? 'network' : nextLevel === 3 ? 'analytics' : 'integration'}"]`);
+    if (!nextTab) return;
+
+    // Remove active from all tabs & panels
+    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+
+    // Activate next tab and panel
+    nextTab.classList.remove('locked'); // in case it’s still locked
+    nextTab.classList.add('active');
+    const targetPanel = document.getElementById(nextTab.getAttribute('data-tab'));
+    if (targetPanel) targetPanel.classList.add('active');
+
+    // Scroll to top of feature section
+    document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+}
+
 // ======================
 // Go to Next Level Function
 // ======================
@@ -258,5 +280,6 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     alert('Message sent! We\'ll get back to you soon.');
     this.reset();
 });
+
 
 
