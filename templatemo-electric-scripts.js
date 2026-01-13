@@ -1,8 +1,7 @@
 // ======================
 // Floating Particles
 // ======================
-function createParticles() 
-{
+function createParticles() {
     const particlesContainer = document.getElementById('particles');
     const particleCount = 30;
 
@@ -132,45 +131,31 @@ setTimeout(() => setInterval(rotateText, 5000), 4000);
 // ======================
 // Feature Tabs & Level Locking
 // ======================
-
-// Track progress in localStorage
 let progress = JSON.parse(localStorage.getItem("bridgetech_progress")) || {
     level1: false,
     level2: false,
     level3: false
 };
 
-function updateLocks() 
-{
+function updateLocks() {
     const savedProgress = localStorage.getItem("bridgetech_progress");
-    if (savedProgress) 
-    {
-        progress = JSON.parse(savedProgress);
-    }
-    
+    if (savedProgress) progress = JSON.parse(savedProgress);
+
     const level2Tab = document.querySelector('[data-tab="network"]');
     const level3Tab = document.querySelector('[data-tab="analytics"]');
     const completionTab = document.querySelector('[data-tab="integration"]');
-    
+
     progress.level1 ? level2Tab.classList.remove("locked") : level2Tab.classList.add("locked");
     progress.level2 ? level3Tab.classList.remove("locked") : level3Tab.classList.add("locked");
     progress.level3 ? completionTab.classList.remove("locked") : completionTab.classList.add("locked");
 }
 updateLocks();
-
-// Initialize on page load
-window.addEventListener('DOMContentLoaded', () => 
-    {
-    updateLocks();
-});
+window.addEventListener('DOMContentLoaded', updateLocks);
 
 // Tab click logic
-document.querySelectorAll('.tab-item').forEach(tab => 
-    {
-    tab.addEventListener('click', e => 
-        {
-        if (tab.classList.contains("locked")) 
-        {
+document.querySelectorAll('.tab-item').forEach(tab => {
+    tab.addEventListener('click', e => {
+        if (tab.classList.contains("locked")) {
             e.preventDefault();
             e.stopPropagation();
             alert("🔒 This level is locked! Complete the previous level with 80%+ to unlock.");
@@ -197,7 +182,6 @@ function submitQuiz(level) {
 
     const questions = quiz.querySelectorAll('.quiz-question');
     let correctCount = 0;
-
     questions.forEach(q => {
         const selected = q.querySelector('input[type="radio"]:checked');
         if (selected && selected.value === "correct") correctCount++;
@@ -211,14 +195,11 @@ function submitQuiz(level) {
         feedback.style.color = 'limegreen';
 
         // Unlock next level
-        const nextLevel = level + 1;
         progress[`level${level}`] = true;
         localStorage.setItem("bridgetech_progress", JSON.stringify(progress));
         updateLocks();
 
-        // Show the Next button
         if (nextBtn) nextBtn.style.display = 'inline-block';
-
     } else {
         feedback.textContent = `❌ You did not pass. Score: ${score.toFixed(0)}%. Try again!`;
         feedback.style.color = 'red';
@@ -228,31 +209,12 @@ function submitQuiz(level) {
     feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// Function to actually move to the next tab
-function goToNextLevel(nextLevel) {
-    const nextTab = document.querySelector(`.tab-item[data-tab="${nextLevel === 2 ? 'network' : nextLevel === 3 ? 'analytics' : 'integration'}"]`);
-    if (!nextTab) return;
-
-    // Remove active from all tabs & panels
-    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
-
-    // Activate next tab and panel
-    nextTab.classList.remove('locked'); // in case it’s still locked
-    nextTab.classList.add('active');
-    const targetPanel = document.getElementById(nextTab.getAttribute('data-tab'));
-    if (targetPanel) targetPanel.classList.add('active');
-
-    // Scroll to top of feature section
-    document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
-}
-
 // ======================
 // Go to Next Level Function
 // ======================
 function goToNextLevel(level) {
     const tabs = ['performance', 'security', 'network', 'analytics', 'integration'];
-    const nextTabId = tabs[level];
+    const nextTabId = tabs[level]; // level corresponds to index in array
     const nextTab = document.querySelector(`.tab-item[data-tab="${nextTabId}"]`);
     if (!nextTab) return;
 
@@ -261,9 +223,12 @@ function goToNextLevel(level) {
     document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
 
     // Activate next tab and its panel
+    nextTab.classList.remove('locked');
     nextTab.classList.add('active');
     const panel = document.getElementById(nextTabId);
     if (panel) panel.classList.add('active');
+
+    document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Attach submit buttons dynamically
@@ -280,6 +245,3 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     alert('Message sent! We\'ll get back to you soon.');
     this.reset();
 });
-
-
-
