@@ -225,6 +225,24 @@ function submitQuiz(level) {
 
     feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
+// ======================
+// Go to Next Level Function
+// ======================
+function goToNextLevel(level) {
+    const tabs = ['performance', 'security', 'network', 'analytics', 'integration'];
+    const nextTabId = tabs[level];
+    const nextTab = document.querySelector(`.tab-item[data-tab="${nextTabId}"]`);
+    if (!nextTab) return;
+
+    // Remove active from all tabs and panels
+    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+
+    // Activate next tab and its panel
+    nextTab.classList.add('active');
+    const panel = document.getElementById(nextTabId);
+    if (panel) panel.classList.add('active');
+}
 
 // Attach submit buttons dynamically
 document.querySelectorAll('button.submit-quiz').forEach(btn => {
@@ -240,4 +258,5 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     alert('Message sent! We\'ll get back to you soon.');
     this.reset();
 });
+
 
