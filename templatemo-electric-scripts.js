@@ -189,34 +189,40 @@ document.querySelectorAll('.tab-item').forEach(tab =>
 // ======================
 // Quiz Logic
 // ======================
-function submitQuiz(level) 
-{
+function submitQuiz(level) {
     const quiz = document.getElementById(`quiz-level-${level}`);
     const feedback = document.getElementById(`quiz-feedback-${level}`);
     if (!quiz || !feedback) return;
+
     const questions = quiz.querySelectorAll('.quiz-question');
     let correctCount = 0;
-    questions.forEach(q => 
-        {
+
+    questions.forEach(q => {
         const selected = q.querySelector('input[type="radio"]:checked');
         if (selected && selected.value === "correct") correctCount++;
     });
+
     const totalQuestions = questions.length;
     const score = (correctCount / totalQuestions) * 100;
-    if (score >= 80) 
-    {
+
+    if (score >= 80) {
         feedback.textContent = `✅ You passed! Score: ${score.toFixed(0)}%`;
         feedback.style.color = 'limegreen';
-        // Unlock next level
-        const nextLevel = level + 1;
+
+        // Update progress and unlock next tab
         progress[`level${level}`] = true;
         localStorage.setItem("bridgetech_progress", JSON.stringify(progress));
         updateLocks();
-    } else 
-    {
+
+        // Show the next button if it exists
+        const nextBtn = document.getElementById(`next-btn-${level}`);
+        if (nextBtn) nextBtn.style.display = 'inline-block';
+
+    } else {
         feedback.textContent = `❌ You did not pass. Score: ${score.toFixed(0)}%. Try again!`;
         feedback.style.color = 'red';
     }
+
     feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
@@ -234,3 +240,4 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     alert('Message sent! We\'ll get back to you soon.');
     this.reset();
 });
+
