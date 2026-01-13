@@ -131,9 +131,9 @@
                         </div>
                         <div class="quiz-question">
                             <p>2. What is a common challenge seniors face?</p>
-                            <label><input type="radio" name="l1q2" value="correct"> Navigating unfamiliar device interfaces</label><br>
-                            <label><input type="radio" name="l1q2" value="wrong"> Coding complex programs</label><br>
-                            <label><input type="radio" name="l1q2" value="wrong"> Managing large social media accounts</label>
+                            <label><input type="radio" name="l1q2" value="correct"> Navigating new device interfaces and menus</label><br>
+                            <label><input type="radio" name="l1q2" value="wrong"> Understanding software updates</label><br>
+                            <label><input type="radio" name="l1q2" value="wrong"> Managing multiple apps at once</label>
                         </div>
                         <div class="quiz-question">
                             <p>3. What helps students work better with seniors?</p>
@@ -145,12 +145,12 @@
                             <p>4. What is one reason seniors are targeted by scammers?</p>
                             <label><input type="radio" name="l1q4" value="wrong"> They rarely use the internet</label><br>
                             <label><input type="radio" name="l1q4" value="correct"> Scammers assume seniors are less tech-savvy</label><br>
-                            <label><input type="radio" name="l1q4" value="wrong"> All seniors have expensive devices</label>
+                            <label><input type="radio" name="l1q4" value="wrong"> All seniors have decently expensive devices</label>
                         </div>
                         <div class="quiz-question">
                             <p>5. What helps build trust with seniors?</p>
-                            <label><input type="radio" name="l1q5" value="wrong"> Using complicated tech terms</label><br>
-                            <label><input type="radio" name="l1q5" value="wrong"> Rushing through instructions</label><br>
+                            <label><input type="radio" name="l1q5" value="wrong"> Using good, yet intricate tech terms</label><br>
+                            <label><input type="radio" name="l1q5" value="wrong"> Going through instructions at a normal speed</label><br>
                             <label><input type="radio" name="l1q5" value="correct"> Giving step-by-step guidance</label>
                         </div>
                         <button onclick="submitQuiz(1)">Submit Quiz</button>
@@ -167,32 +167,32 @@
                         <div class="quiz-question">
                             <p>1. What is a sign of a phishing email?</p>
                             <label><input type="radio" name="l2q1" value="correct"> Unexpected links asking for personal info</label><br>
-                            <label><input type="radio" name="l2q1" value="wrong"> Emails from friends and family</label><br>
-                            <label><input type="radio" name="l2q1" value="wrong"> Emails with no links</label>
+                            <label><input type="radio" name="l2q1" value="wrong"> An email from someone you know</label><br>
+                            <label><input type="radio" name="l2q1" value="wrong"> A message claiming you won a prize but asking for personal info </label>
                         </div>
                         <div class="quiz-question">
                             <p>2. Why are strong passwords important?</p>
-                            <label><input type="radio" name="l2q2" value="wrong"> They are easier to remember</label><br>
-                            <label><input type="radio" name="l2q2" value="correct"> They protect accounts from being guessed</label><br>
-                            <label><input type="radio" name="l2q2" value="wrong"> Websites require them for decoration</label>
+                            <label><input type="radio" name="l2q2" value="wrong"> They are easier to type quickly </label><br>
+                            <label><input type="radio" name="l2q2" value="correct"> They protect accounts from being guessed easily</label><br>
+                            <label><input type="radio" name="l2q2" value="wrong"> Websites sometimes require them for security but not enforcement </label>
                         </div>
                         <div class="quiz-question">
-                            <p>3. What does two-factor authentication (2FA) do?</p>
+                            <p>3. What does 2FA (two-factor authentication) do?</p>
                             <label><input type="radio" name="l2q3" value="correct"> Adds an extra verification step</label><br>
-                            <label><input type="radio" name="l2q3" value="wrong"> Deletes old passwords</label><br>
-                            <label><input type="radio" name="l2q3" value="wrong"> Blocks all login attempts</label>
+                            <label><input type="radio" name="l2q3" value="wrong"> Deletes outdated passwords automatically</label><br>
+                            <label><input type="radio" name="l2q3" value="wrong"> Blocks all login attempts permanently</label>
                         </div>
                         <div class="quiz-question">
                             <p>4. What should seniors do if they receive a suspicious call?</p>
-                            <label><input type="radio" name="l2q4" value="wrong"> Share personal info to end the call</label><br>
+                            <label><input type="radio" name="l2q4" value="wrong"> Give the caller some personal info to get them to hang up</label><br>
                             <label><input type="radio" name="l2q4" value="correct"> Hang up and verify the source independently</label><br>
                             <label><input type="radio" name="l2q4" value="wrong"> Call the number back immediately</label>
                         </div>
                         <div class="quiz-question">
                             <p>5. What is a red flag for an online scam?</p>
-                            <label><input type="radio" name="l2q5" value="wrong"> Websites with secure payment options</label><br>
-                            <label><input type="radio" name="l2q5" value="wrong"> Emails from verified companies</label><br>
-                            <label><input type="radio" name="l2q5" value="correct"> Urgent messages demanding quick action</label>
+                            <label><input type="radio" name="l2q5" value="wrong"> Websites that claim secure payment options without HTTPS</label><br>
+                            <label><input type="radio" name="l2q5" value="wrong"> Emails from companies that have verified accounts </label><br>
+                            <label><input type="radio" name="l2q5" value="correct"> Urgent messages suggesting quick action</label>
                         </div>
                         <button onclick="submitQuiz(2)">Submit Quiz</button>
                         <p class="quiz-feedback" id="quiz-feedback-2"></p>
@@ -206,34 +206,34 @@
                     <div class="quiz-container locked" id="quiz-level-3">
                         <h4>Quiz: Level 3</h4>
                         <div class="quiz-question">
-                            <p>1. What is the purpose of app permissions?</p>
+                            <p>1. Why do apps request permissions for location, contacts, or camera? </p>
                             <label><input type="radio" name="l3q1" value="wrong"> Make apps run faster</label><br>
-                            <label><input type="radio" name="l3q1" value="correct"> Control what data apps can access</label><br>
-                            <label><input type="radio" name="l3q1" value="wrong"> Change the phone's appearance</label>
+                            <label><input type="radio" name="l3q1" value="correct"> To control which personal data the app can access</label><br>
+                            <label><input type="radio" name="l3q1" value="wrong"> To change the visual theme of your phone</label>
                         </div>
                         <div class="quiz-question">
-                            <p>2. What is a safe practice when texting?</p>
-                            <label><input type="radio" name="l3q2" value="correct"> Avoid clicking unknown links</label><br>
-                            <label><input type="radio" name="l3q2" value="wrong"> Reply to every message immediately</label><br>
-                            <label><input type="radio" name="l3q2" value="wrong"> Share passwords over text</label>
+                            <p>2. What is the safest way to respond to unexpected text messages?</p>
+                            <label><input type="radio" name="l3q2" value="correct"> Avoid clicking links or replying to unknown senders</label><br>
+                            <label><input type="radio" name="l3q2" value="wrong"> Reply immediately to all messages to stay polite</label><br>
+                            <label><input type="radio" name="l3q2" value="wrong"> Share your passwords only with trusted friends</label>
                         </div>
                         <div class="quiz-question">
-                            <p>3. What helps seniors navigate smartphones more easily?</p>
-                            <label><input type="radio" name="l3q3" value="wrong"> Using small fonts</label><br>
-                            <label><input type="radio" name="l3q3" value="correct"> Enabling accessibility settings</label><br>
-                            <label><input type="radio" name="l3q3" value="wrong"> Turning off all notifications</label>
+                            <p>3. Which feature helps seniors use smartphones more effectively?</p>
+                            <label><input type="radio" name="l3q3" value="wrong"> Reducing app notifications</label><br>
+                            <label><input type="radio" name="l3q3" value="correct"> Enabling accessibility features like voiceover or large text</label><br>
+                            <label><input type="radio" name="l3q3" value="wrong"> Using very small fonts to fit more info on screen</label>
                         </div>
                         <div class="quiz-question">
-                            <p>4. What should a senior do if an app behaves strangely?</p>
-                            <label><input type="radio" name="l3q4" value="wrong"> Ignore it</label><br>
-                            <label><input type="radio" name="l3q4" value="correct"> Update or delete the app</label><br>
-                            <label><input type="radio" name="l3q4" value="wrong"> Enter personal information</label>
+                            <p>4. If an app starts misbehaving or crashes frequently, what is the best action?</p>
+                            <label><input type="radio" name="l3q4" value="wrong"> Keep using it and hope it fixes itself</label><br>
+                            <label><input type="radio" name="l3q4" value="correct"> Update or uninstall the app to prevent issues</label><br>
+                            <label><input type="radio" name="l3q4" value="wrong"> Enter personal info to troubleshoot the problem</label>
                         </div>
                         <div class="quiz-question">
-                            <p>5. How can seniors avoid downloading harmful apps?</p>
-                            <label><input type="radio" name="l3q5" value="wrong"> Download apps from any website</label><br>
-                            <label><input type="radio" name="l3q5" value="correct"> Use official app stores only</label><br>
-                            <label><input type="radio" name="l3q5" value="wrong"> Download apps that ask for many permissions</label>
+                            <p>5. How can seniors reduce the risk of installing malicious apps?</p>
+                            <label><input type="radio" name="l3q5" value="wrong"> Download apps from random websites</label><br>
+                            <label><input type="radio" name="l3q5" value="correct"> Only use official app stores and check reviews</label><br>
+                            <label><input type="radio" name="l3q5" value="wrong"> Install apps that request multiple permissions</label>
                         </div>
                         <button onclick="submitQuiz(3)">Submit Quiz</button>
                         <p class="quiz-feedback" id="quiz-feedback-3"></p>
@@ -245,7 +245,7 @@
                 <div class="content-panel" id="integration">
                     <h3>Course Complete!</h3>
                     <p>Congratulations! You've completed all levels of the BridgeTech course. Download your certificate and start putting your knowledge into action by connecting with local senior centers by checking out the course materials!</p>
-                    <a href="BridgeTech_Certificate.pdf" download>Download Cert!</a>
+                    <a href="BridgeTech_Certificate.pdf" download>Download BridgeTech Certification Here</a>
                     <!-- lessons omitted for brevity in snippet -->
                 </div>
 
@@ -475,3 +475,4 @@
 
 </body>
 </html>
+
